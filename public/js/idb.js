@@ -31,10 +31,10 @@ function saveRecord(record) {
   const transaction = db.transaction(["new_transact"], "readwrite");
 
   // access the object store for `new_transact`
-  const pizzaObjectStore = transaction.objectStore("new_transact");
+  const budgetObjectStore = transaction.objectStore("new_transact");
 
   // add record to your store with add method.
-  pizzaObjectStore.add(record);
+  budgetObjectStore.add(record);
 }
 
 function uploadTransact() {
@@ -42,15 +42,15 @@ function uploadTransact() {
   const transaction = db.transaction(["new_transact"], "readwrite");
 
   // access your pending object store
-  const pizzaObjectStore = transaction.objectStore("new_transact");
+  const budgetObjectStore = transaction.objectStore("new_transact");
 
   // get all records from store and set to a variable
-  const getAll = pizzaObjectStore.getAll();
+  const getAll = budgetObjectStore.getAll();
 
   getAll.onsuccess = function () {
     // if there was data in indexedDb's store, let's send it to the api server
     if (getAll.result.length > 0) {
-      fetch("/api/pizzas", {
+      fetch("/api/transaction/bulk", {
         method: "POST",
         body: JSON.stringify(getAll.result),
         headers: {
@@ -65,10 +65,10 @@ function uploadTransact() {
           }
           // open one more transaction
           const transaction = db.transaction(["new_transact"], "readwrite");
-          // access the new_pizza object store
-          const pizzaObjectStore = transaction.objectStore("new_transact");
+          // access the new_ object store
+          const budgetObjectStore = transaction.objectStore("new_transact");
           // clear all items in your store
-          pizzaObjectStore.clear();
+          budgetObjectStore.clear();
 
           alert("All saved transactions has been submitted!");
         })

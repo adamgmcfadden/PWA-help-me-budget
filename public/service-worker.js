@@ -1,7 +1,4 @@
-const APP_PREFIX = "budget-helper-";
-const VERSION = "cache-v1";
-// variable formed from app prefix and version to simplify updates
-const CACHE_NAME = APP_PREFIX + VERSION;
+const CACHE_NAME = "budget-helper-cache-v1";
 const DATA_CACHE_NAME = "data-cache-v1";
 
 const FILES_TO_CACHE = [
